@@ -1,0 +1,45 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+
+sourceSets {
+	main {
+		 groovy {
+			srcDirs = ['src/main/groovy', 'src/main/java']
+		}  // compile everything in src/ with groovy
+		java {
+			srcDirs = []
+		}    // no source dirs for the java compiler
+	}
+}
+
+jar {
+	baseName = 'spring-groovy-gradle'
+	version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+}
